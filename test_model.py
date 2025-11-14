@@ -1,12 +1,8 @@
-# test_model.py
 import joblib
 import pandas as pd
 from sklearn.datasets import fetch_california_housing
 
-# بارگذاری مدل
 model = joblib.load("models/housing_model.pkl")
-
-# نمونه تست
 housing = fetch_california_housing(as_frame=True)
 X_sample = housing.frame.drop("MedHouseVal", axis=1).iloc[:5]
 pred = model.predict(X_sample)
