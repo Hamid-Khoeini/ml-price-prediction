@@ -1,0 +1,39 @@
+name: ML CI/CD - قیمت خانه
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  train-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: چک‌اوت کد
+        uses: actions/checkout@v4
+
+      - name: نصب پایتون
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: نصب پکیج‌ها
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: آموزش مدل و تست
+        run: |
+          python src/train.py
+          python test_model.py
+
+      - name: آپلود مدل و نتایج
+        uses: actions/upload-artifact@v4
+        with:
+          name: مدل-و-نتایج
+          path: |
+            models/housing_model.pkl
+            data/california_housing.csv
+            data/prediction_plot.png
