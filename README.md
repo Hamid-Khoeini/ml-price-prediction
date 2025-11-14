@@ -1,2 +1,3 @@
-# پیش‌بینی قیمت خانه کالیفرنیا
-![نمودار](data/prediction_plot.png)
+# California home price forecast
+
+![Diagram](data/prediction_plot.png)
