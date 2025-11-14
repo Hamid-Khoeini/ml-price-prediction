@@ -7,6 +7,6 @@ housing = fetch_california_housing(as_frame=True)
 X_sample = housing.frame.drop("MedHouseVal", axis=1).iloc[:5]
 pred = model.predict(X_sample)
 
-print("پیش‌بینی ۵ خانه اول:", pred)
+print("Predict first 5 samples:", pred)
 assert len(pred) == 5
-print("تست موفق! مدل درست کار می‌کنه")
+print("Success test")
