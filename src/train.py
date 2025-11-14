@@ -11,12 +11,12 @@ import os
 os.makedirs("models", exist_ok=True)
 os.makedirs("data", exist_ok=True)
 
-print("در حال دانلود دیتاست California Housing...")
+print("Dataset California Housing is downloading...")
 housing = fetch_california_housing(as_frame=True)
 df = housing.frame
 
 df.to_csv("data/california_housing.csv", index=False)
-print("دیتاست ذخیره شد: data/california_housing.csv")
+print("Dataset saved: data/california_housing.csv")
 
 X = df.drop("MedHouseVal", axis=1)
 y = df["MedHouseVal"]
@@ -32,14 +32,14 @@ print(f"MAE: {mae:.3f}")
 print(f"R²: {r2:.3f}")
 
 joblib.dump(model, "models/housing_model.pkl")
-print("مدل ذخیره شد: models/housing_model.pkl")
+print("Model saved: models/housing_model.pkl")
 
 plt.figure(figsize=(8, 6))
 plt.scatter(y_test, y_pred, alpha=0.5)
 plt.plot([y.min(), y.max()], [y.min(), y.max()], 'r--')
-plt.xlabel("قیمت واقعی")
-plt.ylabel("قیمت پیش‌بینی شده")
-plt.title(f"پیش‌بینی قیمت خانه کالیفرنیا\nR² = {r2:.3f}")
+plt.xlabel("Real price")
+plt.ylabel("Predicted price")
+plt.title(f"California home price forecast\nR² = {r2:.3f}")
 plt.savefig("data/prediction_plot.png")
 plt.close()
-print("نمودار ذخیره شد: data/prediction_plot.png")
+print("Diagram saved: data/prediction_plot.png")
